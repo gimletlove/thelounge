@@ -145,6 +145,7 @@ export default defineComponent({
 
 		const jumpToLatest = () => {
 			if (!props.channel.newerMessagesAvailable) {
+				void router.replace({name: "RoutedChat", params: {id: props.channel.id}});
 				jumpToBottom();
 				return;
 			}

@@ -667,13 +667,11 @@ class Client {
 		if (index <= 0 && isMessageId(data.storageId)) {
 			const result = client.getStoredMessageWindow(target, data.storageId, 100, 0);
 
-			return result
-				? {
-						chan: target.chan.id,
-						messages: result.messages.slice(0, -1),
-						moreHistoryAvailable: result.hasMoreBefore,
-				  }
-				: null;
+			return {
+				chan: target.chan.id,
+				messages: result ? result.messages.slice(0, -1) : [],
+				moreHistoryAvailable: result ? result.hasMoreBefore : false,
+			};
 		}
 
 		return {
